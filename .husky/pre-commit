@@ -1,0 +1,4 @@
+cd packages/uni-navigation-video && pnpm run postinstall
+cd ../..
+pnpm format
+git add .

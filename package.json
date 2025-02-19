@@ -1,0 +1,22 @@
+{
+  "name": "iqiyi-mvn",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel -F @iqiyi-mvn/uni-navigation-video dev:h5",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "prepare": "husky",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=8"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.2.5"
+  }
+}
