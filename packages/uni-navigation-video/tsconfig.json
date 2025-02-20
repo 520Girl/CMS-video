@@ -7,15 +7,25 @@
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types"],
+    "types": ["@dcloudio/types", "uview-plus/types"],
+    "jsxImportSource": "vue",
     "jsx": "preserve",
     "moduleResolution": "node",
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "allowJs": true
+    "allowJs": true,
+    // 添加以下配置来解决警告
+    "verbatimModuleSyntax": true,
+    "ignoreDeprecations": "5.0"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/types/**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
