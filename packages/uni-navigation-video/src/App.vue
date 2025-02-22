@@ -19,6 +19,7 @@
 <style lang="scss">
   /* 引入uView的样式文件 */
   @import 'uview-plus/index.scss';
+  @import '@/common/styles/common.scss';
 </style>
 <style>
   @tailwind base;

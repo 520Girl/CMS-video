@@ -1,0 +1,111 @@
+@include b(index) {
+}
+.amx-swiper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+@include b(swiper) {
+  @include e(image) {
+    height: 100%;
+    object-position: bottom;
+    position: relative;
+    bottom: 0;
+    border-radius: $amx-radius-sm;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(6, 4, 31, 0) 51.94%, $amx-theme-color-dark 89.19%);
+      pointer-events: none;
+    }
+  }
+  @include e(title) {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+  @include e(indicator-wrap) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @include e(indicator) {
+    width: 8rpx;
+    height: 8rpx;
+    border-radius: 9999px;
+    margin-left: 4rpx;
+    margin-right: 4rpx;
+    background-color: red;
+    width: 10rpx;
+    height: 10rpx;
+    opacity: 0.56;
+    background: $amx-indicator-color;
+    @include m(active) {
+      width: 39.56rpx;
+      height: 10rpx;
+      opacity: 1;
+      border-radius: 36px;
+      background: $amx-theme-color;
+    }
+  }
+}
+
+@include b(category) {
+  color: $amx-text-color;
+  padding: 0 $amx-spacing-sm $amx-spacing-xs-2 $amx-spacing-sm;
+  @include e(title) {
+    @apply block;
+  }
+  @include e(scroll) {
+    font-size: $amx-font-size;
+    color: $amx-text-color;
+    font-weight: $amx-font-weight;
+    margin-top: $amx-spacing-sm;
+    .category-list {
+      @apply flex flex-row justify-self-start items-center flex-nowrap;
+      .category-bg {
+        height: 100%;
+        background-color: $amx-theme-color;
+        border-radius: $amx-radius-xl-1;
+        width: 162rpx;
+      }
+      .category-item {
+        padding: $amx-spacing-xs-5 $amx-spacing-md-1;
+        font-size: $amx-font-size;
+        border-radius: $amx-radius-xl-1;
+        z-index: 1;
+        @apply flex-none;
+        &--active {
+          background-color: $amx-theme-color;
+        }
+      }
+    }
+  }
+}
+
+@include b(popular) {
+  @include e(title-more) {
+    font-size: $amx-font-size;
+    margin-right: $amx-spacing-xs;
+  }
+  @include e(scroll) {
+    .popular-list {
+      .popular-item {
+        width: 249.84rpx;
+        height: 356.68rpx;
+        opacity: 1;
+        margin: 0 $amx-spacing-xs;
+        .popular-image {
+          @apply w-full h-full;
+          border-radius: $amx-radius-md;
+        }
+      }
+    }
+  }
+}
