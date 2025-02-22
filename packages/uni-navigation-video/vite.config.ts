@@ -22,20 +22,32 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-        require('postcss-px-to-viewport')({
-          unitToConvert: 'px', // 要转化的单位
-          viewportWidth: 375, // UI设计稿的视口宽度
-          unitPrecision: 5, // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
-          viewportUnit: 'rpx',
-          propList: ['*'], // 能转化为vw的属性列表
+        require('tailwindcss')({}),
+        require('autoprefixer')({}),
+        require('postcss-preset-env')({
+          minimumVendorImplementations: 2,
+          browsers: 'last 2 versions',
         }),
+        require('postcss-import'),
+        require('postcss-mixins'),
+        require('postcss-simple-vars'),
+        // require('postcss-px-to-viewport')({
+        //   unitToConvert: 'px',
+        //   viewportWidth: 750,  // 修改为750，符合小程序规范
+        //   unitPrecision: 5,
+        //   viewportUnit: 'rpx',
+        //   fontViewportUnit: 'rpx',
+        //   minPixelValue: 1,
+        //   mediaQuery: false,
+        //   replace: true,
+        //   exclude: [],
+        //   landscape: false
+        // })
       ],
     },
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/common/styles/bem.scss";`,
+        additionalData: `@import "@/common/styles/bem.scss";@import "@/uni.scss";`,
       },
     },
     devSourcemap: true, // 开发环境是否启用 sourcemap
