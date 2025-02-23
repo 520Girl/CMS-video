@@ -23,9 +23,9 @@
             :id="`image-${index}`"
             :class="['amx-swiper__image', 'transition-all']"
           />
-          <text class="amx-swiper__title" :style="{ bottom: swiperCss.titleBottom }">{{
-            item.title
-          }}</text>
+          <text class="amx-swiper__title" :style="{ bottom: swiperCss.titleBottom }"
+            >{{ item.title }}
+          </text>
         </template>
         <template #indicator>
           <view class="amx-swiper__indicator-wrap">
@@ -44,27 +44,24 @@
     <!-- 分类导航区域 -->
     <view class="amx-category">
       <text class="amx-category__title title-spacing">分类导航</text>
-      <scroll-view scroll-x class="amx-category__scroll" show-scrollbar="false">
-        <view class="category-list relative">
-          <view
-            class="category-bg transition-all absolute"
-            :style="{
-              transform: `translateX(${currentCategoryLeft}px)`,
-              width: `${currentCategoryWidth}px`,
+      <up-sticky>
+        <view class="amx-category__scroll">
+          <up-tabs
+            :list="categories"
+            :lineColor="theme.colors.theme"
+            :activeStyle="{
+              fontWeight: 'bold',
+              color: theme.colors.text,
+              transform: 'scale(1.05)',
             }"
-          ></view>
-          <view
-            v-for="(item, index) in categories"
-            :key="index"
-            class="category-item relative"
-            @tap="selectCategory(item)"
-            :class="{ 'category-item--active': currentCategory === item.id }"
-            :ref="(el) => (categoryRefs[index] = el)"
-          >
-            {{ item.name }}
-          </view>
+            :inactiveStyle="{
+              color: theme.colors.text,
+              transform: 'scale(1)',
+            }"
+            itemStyle="padding:17rpx 20rpx;color:$amx-text-color"
+          ></up-tabs>
         </view>
-      </scroll-view>
+      </up-sticky>
     </view>
 
     <!-- 最受欢迎区域 -->
@@ -108,13 +105,13 @@
     </view>
 
     <!-- 底部导航栏 -->
-
     <MenuBar />
   </view>
 </template>
 
 <script setup lang="ts">
   import MenuBar from '@/components/menuBar.vue';
+  import { theme } from '@/common/js/theme';
   interface SwiperCss {
     height: string;
     titleBottom: string;
@@ -123,13 +120,22 @@
   interface Category {
     id: number;
     name: string;
+    badge?: {
+      isDot?: boolean;
+      value?: number;
+    };
   }
 
   const current = ref(0);
-  const currentCategory = ref(1);
-  const currentCategoryLeft = ref(0);
-  const currentCategoryWidth = ref(0);
-  const categoryRefs = ref<any[]>([]);
+  const transformMap = ref(
+    new Map<number, string>([
+      [0, 'scaleY(0.9)'],
+      [1, 'scale3d(1, 0.9, 1)'],
+      [2, 'matrix(1, 0, 0, 0.9, 0, 0)'],
+    ])
+  );
+  // 存储支持的 transform 方法索引
+  const transformList = ref<number[]>([]);
 
   const swiperCss = reactive<SwiperCss>({
     height: '780rpx',
@@ -150,8 +156,8 @@
 
   // 分类数据
   const categories = ref<Category[]>([
-    { id: 1, name: '全部的' },
-    { id: 2, name: '动作' },
+    { id: 1, name: '全部的', badge: { isDot: true } },
+    { id: 2, name: '动作', badge: { value: 5 } },
     { id: 3, name: '喜剧' },
     { id: 4, name: '爱情' },
     { id: 5, name: '科幻' },
@@ -168,21 +174,6 @@
     { id: 5, title: '钢铁侠', image: 'https://picsum.photos/300/400?random=5' },
   ]);
 
-  // 选择分类
-  const selectCategory = (category: Category) => {
-    currentCategory.value = category.id;
-    // 获取选中项的DOM元素
-    const index = categories.value.findIndex((item) => item.id === category.id);
-    const selectedElement = categoryRefs.value[index];
-
-    if (selectedElement) {
-      // 更新背景位置和宽度
-      currentCategoryLeft.value = selectedElement.$el.offsetLeft;
-      currentCategoryWidth.value = selectedElement.$el.offsetWidth;
-    }
-    // TODO: 根据分类加载数据
-  };
-
   // 跳转到详情页
   const goToDetail = (item: any) => {
     // TODO: 实现跳转逻辑
@@ -197,7 +188,15 @@
     //将当前图片高度设置为100%
     const currentImage = document.getElementById(`image-${index}`);
     if (currentImage) {
-      currentImage.style.transform = 'scale(1)';
+      if (transformList.value.includes(0)) {
+        currentImage.style.transform = 'scale(1)';
+      } else if (transformList.value.includes(1)) {
+        currentImage.style.transform = 'scale3d(1, 1, 1)';
+      } else if (transformList.value.includes(2)) {
+        currentImage.style.transform = 'matrix(1, 0, 0, 1, 0, 0)';
+      } else {
+        currentImage.style.height = '100%';
+      }
     }
 
     //修改上一张图片 和下张图片高度
@@ -207,22 +206,53 @@
     const nextImage = document.getElementById(`image-${nextIndex}`);
 
     if (prevImage) {
-      prevImage.style.transform = 'scaleY(0.9)';
+      if (transformList.value.length === 0) {
+        prevImage.style.height = '90%'; // 备选方案
+      } else {
+        transformList.value.some((index) => {
+          prevImage.style.transform = transformMap.value.get(index)!;
+          return true;
+        });
+      }
     }
     if (nextImage) {
-      nextImage.style.transform = 'scaleY(0.9)';
+      if (transformList.value.length === 0) {
+        nextImage.style.height = '90%'; // 备选方案
+      } else {
+        transformList.value.some((index) => {
+          nextImage.style.transform = transformMap.value.get(index)!;
+          return true;
+        });
+      }
+    }
+  };
+
+  // 检测transform 支持情况
+  const transformSupport = () => {
+    const testImage = document.getElementById('image-0');
+    if (testImage) {
+      // 测试不同 transform 方法
+      const transforms = ['scaleY(0.9)', 'scale3d(1, 0.9, 1)', 'matrix(1, 0, 0, 0.9, 0, 0)'];
+
+      transforms.forEach((transform, index) => {
+        testImage.style.transform = transform;
+        const computedStyle = window.getComputedStyle(testImage);
+        if (computedStyle.transform !== 'none') {
+          transformList.value.push(index);
+        }
+      });
     }
   };
   onMounted(() => {
+    transformSupport();
     onImageChange({ current: 0, source: 'auto', currentItemId: '' });
-    selectCategory({ id: 1, name: '全部的' });
   });
 </script>
 
 <style scoped lang="scss">
-  @import url('@/common/styles/index.scss');
+  @import '@/common/styles/index.scss';
   :deep(.u-swiper__indicator) {
-    bottom: v-bind('indicatorBottom');
+    bottom: v-bind('theme.indicator.bottom');
     @apply absolute;
   }
 </style>

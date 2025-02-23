@@ -51,6 +51,9 @@ export default defineConfig({
       },
     },
     devSourcemap: true, // 开发环境是否启用 sourcemap
+    modules: {
+      localsConvention: 'camelCase',
+    },
   },
   resolve: {
     alias: {

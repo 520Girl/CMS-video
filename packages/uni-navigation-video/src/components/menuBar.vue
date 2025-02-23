@@ -1,9 +1,9 @@
 <template>
   <view class="amx-menuB flex justify-center items-center fixed">
-    <view class="amx-menuB__wrap flex justify-center items-center">
+    <view class="amx-menuB__wrap w-full flex items-center justify-around">
       <view class="amx-menuB__item" v-for="item in menuBar" :key="item.id">
         <image
-          :src="item.url"
+          :src="currentId === item.id ? item.active : item.url"
           mode="aspectFill"
           :alt="item.name"
           class="menB_img w-full h-full"
@@ -18,37 +18,42 @@
     {
       id: 1,
       name: '首页',
-      url: '@/static/images/Home.web',
+      url: '/static/images/Home.webp',
+      active: '/static/images/Home_a.webp',
     },
     {
       id: 2,
       name: '搜索',
-      url: '@/static/images/Search.svg',
+      url: '/static/images/Search.webp',
+      active: '/static/images/Search_a.webp',
     },
     {
       id: 3,
       name: '收藏',
-      url: '@/static/images/Save.png',
+      url: '/static/images/Save.webp',
+      active: '/static/images/Save_a.webp',
     },
     {
       id: 4,
       name: '下载',
-      url: '@/static/images/Download.png',
+      url: '/static/images/Download.webp',
+      active: '/static/images/Download_a.webp',
     },
     {
       id: 5,
       name: '用户',
-      url: '@/static/images/Profile.png',
+      url: '/static/images/Profile.webp',
+      active: '/static/images/Profile_a.webp',
     },
   ]);
+  const currentId = ref(1);
 </script>
 <style scoped lang="scss">
   @include b(menuB) {
-    @apply w-full text-center;
-    bottom: 36rpx;
+    bottom: $amx-menu-bottom;
     @include e(wrap) {
       width: 698.52rpx;
-      height: 124rpx;
+      height: $amx-menu-height;
       opacity: 1;
       border-radius: 40rpx;
       background: rgba(18, 16, 40, 0.42);
