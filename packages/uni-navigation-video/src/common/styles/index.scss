@@ -1,5 +1,6 @@
 @include b(index) {
   padding-bottom: $amx-menu-height + $amx-menu-bottom;
+  background: $amx-theme-color-dark;
 }
 .amx-swiper {
   width: 100%;
@@ -21,6 +22,20 @@
       width: 100%;
       height: 50%;
       background: linear-gradient(180deg, rgba(6, 4, 31, 0) 51.94%, $amx-theme-color-dark 89.19%);
+      pointer-events: none;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(90deg, rgba(6, 4, 31, 0.3) 0%, rgba(6, 4, 31, 0) 10%),
+        /* 左边渐变 */ linear-gradient(270deg, rgba(6, 4, 31, 0.3) 0%, rgba(6, 4, 31, 0) 10%),
+        /* 右边渐变 */ linear-gradient(0deg, rgba(6, 4, 31, 0.2) 0%, rgba(255, 0, 0, 0) 90%); /* 上边渐变 */
+      background-blend-mode: multiply;
       pointer-events: none;
     }
   }

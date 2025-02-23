@@ -41,6 +41,11 @@ $box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
   }
 }
 
+// 背景颜色
+@mixin background-rgba($color: $amx-theme-color, $opacity: 0.5) {
+  background-color: $color;
+}
+
 // 常用工具类
 .content {
   min-height: 100vh;
@@ -54,4 +59,31 @@ $box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
   font-size: $amx-font-size-sm;
   font-weight: $amx-font-weight-bold;
   margin: $amx-spacing-xs-6 0;
+}
+
+.background-linear {
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(6, 4, 31, 0) 51.94%, $amx-theme-color-dark 89.19%);
+    pointer-events: none;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      linear-gradient(90deg, rgba(6, 4, 31, 0.3) 0%, rgba(6, 4, 31, 0) 10%),
+      /* 左边渐变 */ linear-gradient(270deg, rgba(6, 4, 31, 0.3) 0%, rgba(6, 4, 31, 0) 10%),
+      /* 右边渐变 */ linear-gradient(0deg, rgba(6, 4, 31, 0.2) 0%, rgba(255, 0, 0, 0) 90%); /* 上边渐变 */
+    background-blend-mode: multiply;
+    pointer-events: none;
+  }
 }

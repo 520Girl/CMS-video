@@ -81,7 +81,7 @@ $amx-theme-color: rgba(97, 82, 255, 1); // 主题色
 $amx-theme-color-dark: rgba(6, 4, 31, 1); // 背景主题色
 /* 字体颜色 */
 $amx-text-color: rgba(255, 255, 255, 1); // 字体颜色
-$amx-text-color-light: rgba(255, 255, 255, 0.8); // 字体颜色
+$amx-text-color-light: rgba(206, 205, 216, 1); // 字体颜色
 $amx-text-color-disabled: rgba(255, 255, 255, 0.5); // 禁用字体颜色
 $amx-text-color-placeholder: rgba(255, 255, 255, 0.5); // 占位字体颜色
 /* 指示器颜色 */
@@ -91,9 +91,13 @@ $amx-indicator-color: rgba(222, 222, 222, 1); // 指示器颜色
 $amx-font-size: 24rpx; // 字体大小
 $amx-font-size-xs: 28rpx; // 字体大小
 $amx-font-size-sm: 32rpx; // 字体大小
+$amx-font-size-md: 36rpx; // 字体大小
+$amx-font-size-lg: 40rpx; // 字体大小
+$amx-font-size-xl: 52rpx; // 字体大小
 
 /* 字体粗细 */
 $amx-font-weight: 400; // 字体粗细
+$amx-font-weight-normal: 500; // 字体粗细
 $amx-font-weight-bold: 600; // 字体粗细
 
 /* 间距 */
@@ -125,3 +129,5 @@ $amx-radius-full: 100rpx; // 圆角
 $amx-indicator-bottom: 128rpx; // 指示器颜色
 $amx-menu-bottom: 36rpx; // 菜单距离底部距离
 $amx-menu-height: 124rpx; // 菜单高度
+$amx-header-top: 56rpx; // 头部距离顶部距离
+$amx-menu-background: rgba(18, 16, 40, 0.42); // 菜单背景颜色

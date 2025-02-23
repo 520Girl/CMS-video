@@ -16,6 +16,13 @@
         "navigationBarTitleText": "首页",
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/detail/index",
+      "style": {
+        "navigationBarTitleText": "详情页",
+        "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {

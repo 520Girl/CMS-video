@@ -56,7 +56,7 @@
       height: $amx-menu-height;
       opacity: 1;
       border-radius: 40rpx;
-      background: rgba(18, 16, 40, 0.42);
+      background: $amx-menu-background;
       @supports (backdrop-filter: blur(18rpx)) {
         backdrop-filter: blur(18rpx);
       }

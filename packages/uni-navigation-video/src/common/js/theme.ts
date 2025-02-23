@@ -9,6 +9,7 @@ export const theme = {
   fontSize: variables.fontSize,
   radius: {
     sm: variables.radiusSm,
+    XL1: variables.radiusXL1,
   },
   indicator: {
     bottom: variables.indicatorBottom,
@@ -17,8 +18,8 @@ export const theme = {
     xs5: variables.spacingXS5,
     md1: variables.spacingMD1,
   },
-  radius: {
-    XL1: variables.radiusXL1,
+  header: {
+    top: variables.headerTop,
   },
   // ... 其他变量
 };

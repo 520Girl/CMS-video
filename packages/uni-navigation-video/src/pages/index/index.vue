@@ -1,5 +1,5 @@
 <template>
-  <view class="amx-index content bg-slate-400">
+  <view class="amx-index content">
     <!-- 顶部轮播图区域 -->
     <view class="amx-swiper">
       <up-swiper
@@ -10,7 +10,7 @@
         @change="onImageChange as any"
         :autoplay="false"
         radius="5"
-        bgColor="#ffffff"
+        :bgColor="theme.colors.themeDark"
         :interval="3000"
         :duration="500"
         :height="swiperCss.height"
