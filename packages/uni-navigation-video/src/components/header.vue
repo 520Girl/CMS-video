@@ -1,6 +1,6 @@
 <template>
-  <view class="amx-header fixed w-full z-[1]">
-    <view class="flex justify-between items-center px-4 py-2">
+  <view :class="[type === 1 ? 'amx-header fixed w-full z-[1]' : 'header-2']">
+    <view class="flex justify-between items-center px-4">
       <!-- 左侧返回按钮 -->
       <view class="amx-header__icon" @tap="handleBack">
         <image src="/static/images/detail/Back.webp" mode="aspectFit" class="w-full h-full" />
@@ -22,7 +22,7 @@
           </view>
         </view>
       </template>
-      <template>
+      <template v-else>
         <view class="text-center flex-1">
           <text class="amx-header__title">{{ title }}</text>
         </view>
@@ -78,5 +78,15 @@
       width: 70rpx;
       height: 70rpx;
     }
+    @include e(title) {
+      font-size: $amx-font-size-md;
+      font-weight: $amx-font-weight-normal;
+      color: $amx-text-color;
+    }
+  }
+  .header-2 {
+    @apply amx-header w-full;
+    padding-top: $amx-header-top;
+    padding-bottom: 40rpx;
   }
 </style>

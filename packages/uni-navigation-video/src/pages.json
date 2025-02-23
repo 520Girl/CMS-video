@@ -23,6 +23,13 @@
         "navigationBarTitleText": "详情页",
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/classify/index",
+      "style": {
+        "navigationBarTitleText": "分类页",
+        "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {

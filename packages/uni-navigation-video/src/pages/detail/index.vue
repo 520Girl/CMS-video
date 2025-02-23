@@ -20,7 +20,12 @@
         </view>
         <view class="amx-detail__actions">
           <button class="action-btn action-btn--watch" @tap="handleWatch">
-            <image src="/static/images/detail/Polygon.webp" mode="aspectFit" class="action-icon" />
+            <image
+              src="/static/images/detail/Polygon.webp"
+              mode="aspectFit"
+              class="action-icon"
+              style="width: 30rpx; height: 28rpx"
+            />
             <text>观看</text>
           </button>
           <button class="action-btn action-btn--download" @tap="handleDownload">

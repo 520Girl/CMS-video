@@ -1,0 +1,52 @@
+@include b(classify) {
+  background-color: $amx-theme-color-dark;
+
+  @include e(header) {
+    padding-top: calc($amx-header-top + 20rpx);
+    padding-bottom: 40rpx;
+
+    .title {
+      font-size: 48rpx;
+      font-weight: bold;
+      color: $amx-text-color;
+      margin-top: 20rpx;
+    }
+  }
+
+  @include e(content) {
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20rpx;
+      padding-bottom: 40rpx;
+
+      .movie-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20rpx;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        .poster {
+          width: 100%;
+          aspect-ratio: 2/3;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .title {
+          padding: 16rpx;
+          font-size: 24rpx;
+          color: $amx-text-color;
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
