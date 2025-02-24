@@ -87,6 +87,6 @@
   .header-2 {
     @apply amx-header w-full;
     padding-top: $amx-header-top;
-    padding-bottom: 40rpx;
+    padding-bottom: 20rpx;
   }
 </style>

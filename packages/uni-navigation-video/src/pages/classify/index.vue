@@ -1,26 +1,17 @@
 <template>
   <view class="amx-classify content">
     <!-- 页面头部 -->
-    <Header title="分类" type="2" />
-
+    <up-sticky customNavHeight="0rpx" offsetTop="500rpx">
+      <Header title="分类" :type="2" />
+    </up-sticky>
     <!-- 内容区域 -->
     <view class="amx-classify__content">
-      <view>
-        <view class="flex justify-start flex-wrap">
-          <!-- <view
-            class="poster"
-            :style="{ backgroundImage: `url(${movie.image})` }"
-          ></view> -->
-          <ListItem v-for="movie in movieList" :key="movie.id" @tap="goToDetail(movie)" />
-          <!-- <view class="title">{{ movie.title }}</view> -->
-        </view>
-      </view>
+      <ListItem v-for="movie in movieList" :key="movie.id" @tap="goToDetail(movie)" />
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
   import Header from '@/components/header.vue';
   import ListItem from '@/components/listItem.vue';
 

@@ -4,6 +4,7 @@
       <view class="amx-item-img">
         <image
           class="w-full"
+          style="width: 202rpx; height: 285rpx"
           src="https://img.lzzyimg.com/upload/vod/20240715-1/6341b5d7253ed9676a149336f3c23c1e.jpg"
           mode="aspectFill"
         ></image>
@@ -49,10 +50,10 @@
 <script setup lang="ts"></script>
 <style lang="scss" scoped>
   @include b(list-item) {
-    @apply box-border w-[50%];
+    @apply box-border w-[33.3%];
 
     @include e(wrap) {
-      padding: 0 8rpx;
+      padding: 10rpx 8rpx;
 
       .amx-item-img {
         @apply w-full relative;

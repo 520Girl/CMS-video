@@ -13,6 +13,8 @@ export const theme = {
   },
   indicator: {
     bottom: variables.indicatorBottom,
+    swiper: variables.swiperHeight,
+    swiperTitleBottom: variables.swiperTitleBottom,
   },
   spacing: {
     xs5: variables.spacingXS5,
@@ -20,6 +22,9 @@ export const theme = {
   },
   header: {
     top: variables.headerTop,
+  },
+  index: {
+    searchTop: variables.indexSearchTop,
   },
   // ... 其他变量
 };

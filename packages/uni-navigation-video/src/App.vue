@@ -25,4 +25,11 @@
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
+
+  .uni-tabbar {
+    display: none !important;
+  }
+  .uni-app--showtabbar uni-page-wrapper::after {
+    display: none !important;
+  }
 </style>

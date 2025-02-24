@@ -15,7 +15,7 @@ export default defineConfig({
       disabled: ish5 || isApp, // 不转化的
     }),
     AutoImport({
-      imports: ['vue'],
+      imports: ['vue', 'uni-app'],
       dts: 'src/types/auto-imports.d.ts',
     }),
   ],

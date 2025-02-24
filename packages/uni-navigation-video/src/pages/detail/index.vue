@@ -130,7 +130,6 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive } from 'vue';
   import Header from '@/components/header.vue';
 
   interface Track {

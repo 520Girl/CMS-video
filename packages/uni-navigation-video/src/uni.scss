@@ -79,6 +79,7 @@ $uni-font-size-paragraph: 15px;
 /* 主题颜色 */
 $amx-theme-color: rgba(97, 82, 255, 1); // 主题色
 $amx-theme-color-dark: rgba(6, 4, 31, 1); // 背景主题色
+$amx-theme-bg-shallow: rgb(97 82 255 / 27%); // 主题色
 /* 字体颜色 */
 $amx-text-color: rgba(255, 255, 255, 1); // 字体颜色
 $amx-text-color-light: rgba(206, 205, 216, 1); // 字体颜色
@@ -128,7 +129,10 @@ $amx-radius-xl-1: 76rpx; // 圆角
 $amx-radius-full: 100rpx; // 圆角
 
 /* 轮播图indicator */
-$amx-indicator-bottom: 128rpx; // 指示器颜色
+$amx-indicator-bottom: 128rpx; // 指示器距离底部高度
+$amx-swiper-title-bottom: 150rpx; // 轮播图标题距离底部高度
+$amx-index-search-top: 150rpx; // 搜索框距离顶部高度
+$amx-swiper-height: 780rpx; // 轮播图高度
 $amx-menu-bottom: 36rpx; // 菜单距离底部距离
 $amx-menu-height: 124rpx; // 菜单高度
 $amx-header-top: 56rpx; // 头部距离顶部距离
